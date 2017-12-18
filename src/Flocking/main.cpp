@@ -1,11 +1,21 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp> //need to link opengl manually to use
+
 #include <iostream>
+
+#include "TriFlocker.h"
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	sf::ContextSettings settings;
+	settings.antialiasingLevel = 8;
+
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML works!", sf::Style::Default, settings);
+	
+	//sf::CircleShape shape(100.f);
+	//shape.setFillColor(sf::Color::Green);
+
+	TriFlocker myFlocker(20, sf::Vector2f(50, 200), &window);
 
 	while (window.isOpen())
 	{
@@ -59,8 +69,11 @@ int main()
 			}
 		}
 
-		window.clear();
-		window.draw(shape);
+
+		window.clear(sf::Color(255, 255, 255, 0));
+		myFlocker.move(0,0.1);
+		myFlocker.update();
+		myFlocker.draw();
 		window.display();
 	}
 
