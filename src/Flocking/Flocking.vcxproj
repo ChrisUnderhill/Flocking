@@ -119,9 +119,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SimpleAimAt.cpp" />
     <ClCompile Include="TriFlocker.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SimpleAimAt.h" />
+    <ClInclude Include="Steering.h" />
     <ClInclude Include="TriFlocker.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
