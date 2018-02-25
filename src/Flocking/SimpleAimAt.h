@@ -9,9 +9,7 @@ public:
 	SimpleAimAt();
 	~SimpleAimAt();
 
-	sf::Vector2f calculateForce();
 	sf::Vector2f calculateForce(sf::Vector2f pos);
-	sf::Vector2f calculateForce(sf::Vector2f pos, sf::Vector2f vel);
 
 	void pickRandomTarget();
 

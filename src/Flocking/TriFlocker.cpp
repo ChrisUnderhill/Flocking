@@ -105,6 +105,7 @@ void TriFlocker::setSteering(Steering* s) {
 
 void TriFlocker::initRandom() {
 	pos = sf::Vector2f(rand() % window->getSize().x, rand() % window->getSize().y);
+	angle = rand() % 360;
 }
 
 void TriFlocker::update() {

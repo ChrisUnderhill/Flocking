@@ -13,10 +13,6 @@ SimpleAimAt::~SimpleAimAt()
 {
 }
 
-sf::Vector2f SimpleAimAt::calculateForce() {
-	return sf::Vector2f(0, 0);
-}
-
 
 sf::Vector2f SimpleAimAt::calculateForce(sf::Vector2f pos) {
 	sf::Vector2f delta = targetPos - pos;
@@ -24,10 +20,6 @@ sf::Vector2f SimpleAimAt::calculateForce(sf::Vector2f pos) {
 	targetPos += sf::Vector2f(0.0001, 0.0001);
 
 	return normalise(delta) * maxForce;
-}
-
-sf::Vector2f SimpleAimAt::calculateForce(sf::Vector2f pos, sf::Vector2f vel) {
-	return sf::Vector2f(0, 0);
 }
 
 void SimpleAimAt::pickRandomTarget() {
