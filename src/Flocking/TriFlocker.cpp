@@ -31,6 +31,8 @@ TriFlocker::TriFlocker(sf::RenderWindow* win)
 
 	window = win;
 
+	drag = 1;
+
 }
 
 TriFlocker::TriFlocker(int base, sf::Vector2f loc, sf::RenderWindow* win)
@@ -57,6 +59,8 @@ TriFlocker::TriFlocker(int base, sf::Vector2f loc, sf::RenderWindow* win)
 	acc = sf::Vector2f(0, 0);
 
 	window = win;
+
+	drag = 0.995;
 
 }
 
@@ -137,6 +141,9 @@ void TriFlocker::update() {
 
 	pos = renderPos;
 	triShape.setPosition(renderPos);
+
+	vel = sf::Vector2f(vel.x * drag, vel.y*drag);
+
 }
 
 void TriFlocker::draw() {

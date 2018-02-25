@@ -7,7 +7,7 @@ class TriFlocker; //Forward declare circular dependencies
 class Steering
 {
 protected:
-	std::vector<TriFlocker*> flockers;
+	std::vector<TriFlocker*> * flockers;
 
 
 public:

@@ -39,6 +39,8 @@ public:
 	sf::Vector2f getPos();
 	sf::Vector2f getVel();
 
+	float drag;
+
 	static sf::Vector2f wrappedDelta(sf::Vector2f x, sf::Vector2f y, sf::Vector2f WrapBoxSize);
 
 

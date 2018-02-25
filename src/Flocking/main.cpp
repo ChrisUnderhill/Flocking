@@ -7,6 +7,7 @@
 
 #include "TriFlocker.h"
 #include "SimpleAimAt.h"
+#include "SeeingBoids.h"
 
 int main()
 {
@@ -18,17 +19,19 @@ int main()
 
 	std::vector<TriFlocker*> flockers;
 
-	Steering* simpleSteer = new SimpleAimAt(flockers);
+	Steering* simpleSteer = new SimpleAimAt(&flockers);
+
+	Steering* groupUp = new SeeingBoids(&flockers);
 
 	TriFlocker myFlocker(20, sf::Vector2f(50, 200), &window);
 
-	myFlocker.setSteering(simpleSteer);
+	myFlocker.setSteering(groupUp);
 
 
-	for (int i = 0; i < 500; i++) {
+	for (int i = 0; i < 100; i++) {
 		flockers.push_back(new TriFlocker(20, sf::Vector2f(rand()%900, rand() % 900), &window));
 		flockers[i]->initRandom();
-		flockers[i]->setSteering(simpleSteer);
+		flockers[i]->setSteering(groupUp);
 	}
 
 	while (window.isOpen())

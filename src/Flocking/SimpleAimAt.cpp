@@ -3,7 +3,7 @@
 #include <random>
 #include "TriFlocker.h"
 
-SimpleAimAt::SimpleAimAt(std::vector<TriFlocker*> others)
+SimpleAimAt::SimpleAimAt(std::vector<TriFlocker*> * others)
 {
 	targetPos = sf::Vector2f(rand() % 900, rand() % 900);
 
