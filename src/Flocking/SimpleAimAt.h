@@ -6,7 +6,7 @@ class SimpleAimAt :
 	public Steering
 {
 public:
-	SimpleAimAt();
+	SimpleAimAt(std::vector<TriFlocker*> others);
 	~SimpleAimAt();
 
 	sf::Vector2f calculateForce(sf::Vector2f pos);

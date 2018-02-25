@@ -2,6 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include "Steering.h"
 
+class Steering; //Forward declare circular dependencies
+
+
 class TriFlocker
 {
 private:
@@ -16,6 +19,7 @@ private:
 	sf::Vector2f vel;
 	sf::Vector2f acc;
 	float angle;
+
 	
 	//SFML
 	sf::ConvexShape triShape;
@@ -31,6 +35,11 @@ public:
 	TriFlocker(sf::RenderWindow* win);
 	TriFlocker(int base, sf::Vector2f pos, sf::RenderWindow* win);
 	virtual ~TriFlocker();
+
+	sf::Vector2f getPos();
+	sf::Vector2f getVel();
+
+	static sf::Vector2f wrappedDelta(sf::Vector2f x, sf::Vector2f y, sf::Vector2f WrapBoxSize);
 
 
 	//Appearance

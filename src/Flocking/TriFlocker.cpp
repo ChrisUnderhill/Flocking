@@ -98,6 +98,20 @@ void TriFlocker::rotate(float theta) {
 	angle += theta;
 }
 
+sf::Vector2f TriFlocker::getPos() { return pos; }
+
+sf::Vector2f TriFlocker::getVel() { return vel; }
+
+sf::Vector2f TriFlocker::wrappedDelta(sf::Vector2f x, sf::Vector2f y, sf::Vector2f WrapBoxSize) {
+	sf::Vector2f delta = x - y;
+
+	if (delta.x > WrapBoxSize.x / 2) { delta.x = WrapBoxSize.x / 2 - delta.x; }
+	else if (delta.x < -WrapBoxSize.x / 2) { delta.x = -WrapBoxSize.x / 2 - delta.x; }
+	if (delta.y > WrapBoxSize.y / 2) { delta.y = WrapBoxSize.y / 2 - delta.y; }
+	else if (delta.y > WrapBoxSize.y / 2) { delta.y = -WrapBoxSize.y / 2 - delta.y; }
+
+	return delta;
+}
 
 void TriFlocker::setSteering(Steering* s) {
 	steering = s;
@@ -117,8 +131,12 @@ void TriFlocker::update() {
 	triShape.setRotation(angle);
 
 
-	//pos += sf::Vector2f(1, 0);
-	triShape.setPosition(pos);
+	sf::Vector2f renderPos = sf::Vector2f( fmod(pos.x, window->getSize().x), fmod(pos.y, window->getSize().y));
+	renderPos.x = renderPos.x < 0 ? window->getSize().x + renderPos.x : renderPos.x;
+	renderPos.y = renderPos.y < 0 ? window->getSize().y + renderPos.y : renderPos.y;
+
+	pos = renderPos;
+	triShape.setPosition(renderPos);
 }
 
 void TriFlocker::draw() {

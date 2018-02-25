@@ -119,10 +119,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SeeingBoids.cpp" />
     <ClCompile Include="SimpleAimAt.cpp" />
     <ClCompile Include="TriFlocker.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SeeingBoids.h" />
     <ClInclude Include="SimpleAimAt.h" />
     <ClInclude Include="Steering.h" />
     <ClInclude Include="TriFlocker.h" />

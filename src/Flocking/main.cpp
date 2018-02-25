@@ -18,7 +18,7 @@ int main()
 
 	std::vector<TriFlocker*> flockers;
 
-	Steering* simpleSteer = new SimpleAimAt();
+	Steering* simpleSteer = new SimpleAimAt(flockers);
 
 	TriFlocker myFlocker(20, sf::Vector2f(50, 200), &window);
 
