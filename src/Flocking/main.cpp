@@ -5,9 +5,30 @@
 #include <random>
 #include <vector>
 
+#include <algorithm>
+#include <numeric>
+#include <future>
+
 #include "TriFlocker.h"
 #include "SimpleAimAt.h"
 #include "SeeingBoids.h"
+#include "AliCohSep.h"
+
+
+/*
+template <typename RAIter>
+void drawFlockers(RAIter beg, RAIter end)
+{
+	auto len = end - beg;
+
+
+
+	for (auto i : flockers) {
+		i->update();
+		i->draw();
+	}
+}
+*/
 
 int main()
 {
@@ -23,15 +44,17 @@ int main()
 
 	Steering* groupUp = new SeeingBoids(&flockers);
 
-	TriFlocker myFlocker(20, sf::Vector2f(50, 200), &window);
+	Steering* Reynold = new AliCohSep(&flockers);
 
-	myFlocker.setSteering(groupUp);
+	//TriFlocker myFlocker(20, sf::Vector2f(50, 200), &window);
+
+	//myFlocker.setSteering(Reynold);
 
 
 	for (int i = 0; i < 100; i++) {
 		flockers.push_back(new TriFlocker(20, sf::Vector2f(rand()%900, rand() % 900), &window));
 		flockers[i]->initRandom();
-		flockers[i]->setSteering(groupUp);
+		flockers[i]->setSteering(Reynold);
 	}
 
 	while (window.isOpen())
@@ -89,14 +112,18 @@ int main()
 
 		window.clear(sf::Color(255, 255, 255, 0));
 		//myFlocker.move(0,0.1);
-		myFlocker.update();
-		myFlocker.draw();
 
 
+		//myFlocker.update();
+		//myFlocker.draw();
+
+		
 		for (auto i : flockers) {
 			i->update();
 			i->draw();
 		}
+		
+
 
 		window.display();
 	}

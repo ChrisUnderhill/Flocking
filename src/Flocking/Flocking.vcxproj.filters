@@ -27,6 +27,9 @@
     <ClCompile Include="SeeingBoids.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AliCohSep.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TriFlocker.h">
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SeeingBoids.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AliCohSep.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -48,7 +48,11 @@ sf::Vector2f SeeingBoids::calculateForce(sf::Vector2f pos) {
 sf::Vector2f SeeingBoids::normalise(sf::Vector2f x) {
 	float tot = sqrt(x.x*x.x + x.y*x.y);
 
-	return x / tot;
+	if (tot > 0.001 || tot < -0.001) {
+		return x / tot;
+	}
+	
+	return sf::Vector2f(0, 0);
 }
 
 float SeeingBoids::size2(sf::Vector2f x) {

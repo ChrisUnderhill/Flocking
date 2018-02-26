@@ -17,7 +17,7 @@ public:
 	sf::Vector2f worldSize;
 
 
-private:
+protected:
 	sf::Vector2f targetPos = sf::Vector2f(200,500);
 	sf::Vector2f normalise(sf::Vector2f x);
 	float size2(sf::Vector2f x);
