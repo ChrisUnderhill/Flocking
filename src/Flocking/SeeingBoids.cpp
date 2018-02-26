@@ -46,15 +46,33 @@ sf::Vector2f SeeingBoids::calculateForce(sf::Vector2f pos) {
 }
 
 sf::Vector2f SeeingBoids::normalise(sf::Vector2f x) {
-	float tot = sqrt(x.x*x.x + x.y*x.y);
+	float sqr = x.x*x.x + x.y*x.y;
 
-	if (tot > 0.001 || tot < -0.001) {
-		return x / tot;
+	float f;
+	long i;
+
+	float x2;
+	const float threehalfs = 1.5F;
+
+	x2 = sqr * 0.5f;
+	f = sqr;
+	i = *(long *)&f;
+
+	i = 0x5f3759df - (i >> 1);
+
+	f = *(float *)&i;
+	f = f * (threehalfs - (x2*f*f));
+
+
+	
+
+	if (f > 0.0001 || f < -0.0001) {
+		return x * f;
 	}
 	
 	return sf::Vector2f(0, 0);
 }
 
 float SeeingBoids::size2(sf::Vector2f x) {
-	return sqrt(x.x*x.x + x.y*x.y);
+	return x.x*x.x + x.y*x.y;
 }

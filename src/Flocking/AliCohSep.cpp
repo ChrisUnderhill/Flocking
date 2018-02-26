@@ -5,12 +5,12 @@
 
 
 AliCohSep::AliCohSep(std::vector<TriFlocker*> * others) : SeeingBoids(others){
-	alignment = 0.0/8;
-	cohesion = 0.0/8;
-	separation = 80.0/8;
+	alignment = 1.0/8;
+	cohesion = 5.0/8;
+	separation = 8.0/8;
 
 	maxForce = 0.02;
-	visionRadius = 30;
+	visionRadius = 100;
 }
 
 
@@ -46,7 +46,7 @@ sf::Vector2f AliCohSep::calculateForce(sf::Vector2f pos) {
 		sf::Vector2f deltaCoh = normalise(targetCoh /* * (1.0f / count) - pos */ )*cohesion;
 
 
-		sf::Vector2f deltaSep = normalise(targetSep) * separation;
+		sf::Vector2f deltaSep = targetSep * separation;
 
 		//std::cout << deltaCoh.x << " " << deltaCoh.y << std::endl;
 
@@ -65,5 +65,5 @@ inline sf::Vector2f AliCohSep::calcCohesion(sf::Vector2f delta) {
 }
 
 inline sf::Vector2f AliCohSep::calcSeparation(sf::Vector2f delta) {
-	return normalise(-delta) / size2(delta);
+	return -delta / size2(delta) * visionRadius * 0.05f;
 }
