@@ -4,10 +4,16 @@ class AliCohSep :
 	public SeeingBoids
 {
 public:
+
 	AliCohSep(std::vector<TriFlocker*> * others);
 	~AliCohSep();
 
 	sf::Vector2f calculateForce(sf::Vector2f pos);
+
+	enum class ReynoldParameters {alignment, cohesion, separation, visionRadius, maxForce};
+
+	void setParameters(float alignment, float cohesion, float separation, float visionRadius, float maxForce);
+	void changeParameter(ReynoldParameters param, float delta);
 
 private:
 	float alignment, cohesion, separation;

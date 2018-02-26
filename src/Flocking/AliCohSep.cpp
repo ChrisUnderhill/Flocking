@@ -55,6 +55,38 @@ sf::Vector2f AliCohSep::calculateForce(sf::Vector2f pos) {
 	return sf::Vector2f(0, 0);
 }
 
+void AliCohSep::setParameters(float ali, float coh, float sep, float vis, float force) {
+	alignment = ali;
+	cohesion = coh;
+	separation = sep;
+	visionRadius = vis;
+	maxForce = force;
+}
+
+void AliCohSep::changeParameter(ReynoldParameters param, float delta) {
+	switch (param)
+	{
+	case ReynoldParameters::alignment:
+		alignment += delta;
+		break;
+	case ReynoldParameters::cohesion:
+		cohesion += delta;
+		break;
+	case ReynoldParameters::separation:
+		separation += delta;
+		break;
+	case ReynoldParameters::visionRadius:
+		visionRadius += delta;
+		break;
+	case ReynoldParameters::maxForce:
+		maxForce += delta;
+		break;
+	default:
+		std::cout << "That is not a parameter\n";
+		return;
+	}
+}
+
 
 inline sf::Vector2f AliCohSep::calcAlignment(TriFlocker* tri) {
 	return tri->getVel();

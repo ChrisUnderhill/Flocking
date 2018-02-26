@@ -149,7 +149,8 @@ int main()
 		//std::cout << "\n";
 		
 
-
+		((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::separation, 0.001);
+		((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::visionRadius, 0.1);
 
 		window.display();
 	}
