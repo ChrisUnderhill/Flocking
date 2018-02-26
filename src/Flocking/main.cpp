@@ -15,20 +15,37 @@
 #include "AliCohSep.h"
 
 
-/*
+
 template <typename RAIter>
-void drawFlockers(RAIter beg, RAIter end)
+void drawFlockers(RAIter beg, RAIter end, int lenAtOnce)
 {
 	auto len = end - beg;
+	RAIter mid = beg + len / 2;
 
 
-
-	for (auto i : flockers) {
-		i->update();
-		i->draw();
+	
+	if (len < lenAtOnce) {
+		auto it = beg;
+		for (int i = 1; i < lenAtOnce; i++) {
+			(*it)->update();
+			it = std::next(it);
+			if (it == end)
+				return;
+		}
+		return;
 	}
+
+	//std::for_each(beg, end, TriFlocker.update);
+
+	auto handle = std::async(std::launch::async,
+		drawFlockers<RAIter>, mid, end, lenAtOnce);
+
+	drawFlockers(beg, mid, lenAtOnce);
+	handle.get();
+
+	return;
 }
-*/
+
 
 int main()
 {
@@ -117,12 +134,21 @@ int main()
 		//myFlocker.update();
 		//myFlocker.draw();
 
-		
+		int numThreads = 16;
+
+		drawFlockers(flockers.begin(), flockers.end(), (flockers.end()-flockers.begin())/numThreads );
+
+		int count = 0;
 		for (auto i : flockers) {
-			i->update();
+			//i->update();
 			i->draw();
+			//count++;
+			//std::cout << i->getPos().x << " ";
 		}
+		//Sleep(1000);
+		//std::cout << "\n";
 		
+
 
 
 		window.display();
