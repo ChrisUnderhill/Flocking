@@ -9,8 +9,9 @@ AliCohSep::AliCohSep(std::vector<TriFlocker*> * others) : SeeingBoids(others){
 	cohesion = 5.0/8;
 	separation = 8.0/8;
 
-	maxForce = 0.02;
 	visionRadius = 100;
+	maxForce = 0.02;
+
 }
 
 
@@ -68,23 +69,29 @@ void AliCohSep::changeParameter(ReynoldParameters param, float delta) {
 	{
 	case ReynoldParameters::alignment:
 		alignment += delta;
+		std::cout << "Alignment = " << alignment << std::endl;
 		break;
 	case ReynoldParameters::cohesion:
 		cohesion += delta;
+		std::cout << "Cohesion = " << cohesion << std::endl;
 		break;
 	case ReynoldParameters::separation:
 		separation += delta;
+		std::cout << "Separation = " << separation << std::endl;
 		break;
 	case ReynoldParameters::visionRadius:
 		visionRadius += delta;
+		std::cout << "VisionRadius = " << visionRadius << std::endl;
 		break;
 	case ReynoldParameters::maxForce:
 		maxForce += delta;
+		std::cout << "MaxForce = " << maxForce << std::endl;
 		break;
 	default:
 		std::cout << "That is not a parameter\n";
 		return;
 	}
+
 }
 
 

@@ -99,8 +99,46 @@ int main()
 					window.close();
 					break;
 				case sf::Keyboard::Return:
-					//pause
+					((AliCohSep*)Reynold)->setParameters(0.125f, 0.625f, 1.0f, 100.0f, 0.02f);
 					break;
+
+				case sf::Keyboard::Q:
+					((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::alignment, 0.05);
+					break;
+				case sf::Keyboard::A:
+					((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::alignment, -0.05);
+					break;
+
+				case sf::Keyboard::W:
+					((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::cohesion, 0.05);
+					break;
+				case sf::Keyboard::S:
+					((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::cohesion, -0.05);
+					break;
+
+				case sf::Keyboard::E:
+					((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::separation, 0.05);
+					break;
+				case sf::Keyboard::D:
+					((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::separation, -0.05);
+					break;
+
+				case sf::Keyboard::R:
+					((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::visionRadius, 20);
+					break;
+				case sf::Keyboard::F:
+					((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::visionRadius, -20);
+					break;
+
+				case sf::Keyboard::T:
+					((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::maxForce, 0.01);
+					break;
+				case sf::Keyboard::G:
+					((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::maxForce, -0.01);
+					break;
+
+
+
 				}
 				break;
 			case sf::Event::KeyReleased:
@@ -147,10 +185,6 @@ int main()
 		}
 		//Sleep(1000);
 		//std::cout << "\n";
-		
-
-		((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::separation, 0.001);
-		((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::visionRadius, 0.1);
 
 		window.display();
 	}
