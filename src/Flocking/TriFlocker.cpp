@@ -117,18 +117,6 @@ sf::Vector2f TriFlocker::wrappedDelta(sf::Vector2f u, sf::Vector2f v, sf::Vector
 	if (delta.y > WrapBoxSize.y / 2) { delta.y = delta.y - WrapBoxSize.y; }
 	else if (delta.y < -WrapBoxSize.y / 2) { delta.y = WrapBoxSize.y + delta.y; }
 	
-
-	/*
-
-	dx = 90; w = 100; dx = 90-100 =-10 TICK
-	dx = -90; w= 100; dx = 100 + (-90) = 10 TICK
-
-	sf::Vector2f delta2 = x - y - sf::Vector2f(1920, 1080);
-
-	delta = sf::Vector2f(abs(delta.x) > abs(delta2.x) ? delta2.x : delta.x, abs(delta.y) > abs(delta2.y) ? delta2.y : delta.y);
-	*/
-
-
 	return delta;
 }
 

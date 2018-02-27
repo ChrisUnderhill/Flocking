@@ -29,27 +29,23 @@ sf::Vector2f AliCohSep::calculateForce(sf::Vector2f pos) {
 	for (TriFlocker* tri : *flockers) {
 		sf::Vector2f delta = TriFlocker::wrappedDelta(tri->getPos(), pos, worldSize);
 
-		assert( (delta.x < 980 && delta.y < 570) );
+		//assert( (delta.x < 980 && delta.y < 570) );
+		if (abs(delta.x) < visionRadius && abs(delta.y) < visionRadius) {
+			if (size2(delta) < visionRadius*visionRadius && size2(delta) > 0) {
 
-		if (size2(delta) < visionRadius*visionRadius && size2(delta) > 0) {
+				targetAli += calcAlignment(tri);
+				targetCoh += calcCohesion(delta);
+				targetSep += calcSeparation(delta);
 
-			targetAli += calcAlignment(tri);
-			targetCoh += calcCohesion(delta);
-			targetSep += calcSeparation(delta);
-
-			count++;
+				count++;
+			}
 		}
 	}
 
 	if (count > 0) {
 		sf::Vector2f deltaAli = normalise(targetAli) * alignment;
-		//sf::Vector2f deltaCoh = sf::Vector2f( ( targetCoh.x / count - pos.x ) * cohesion, (targetCoh.y / count ) * cohesion);
-		sf::Vector2f deltaCoh = normalise(targetCoh /* * (1.0f / count) - pos */ )*cohesion;
-
-
+		sf::Vector2f deltaCoh = normalise(targetCoh )*cohesion;
 		sf::Vector2f deltaSep = targetSep * separation;
-
-		//std::cout << deltaCoh.x << " " << deltaCoh.y << std::endl;
 
 		return (deltaAli + deltaCoh + deltaSep) * maxForce;
 	}

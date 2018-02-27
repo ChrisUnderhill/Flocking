@@ -131,10 +131,28 @@ int main()
 					break;
 
 				case sf::Keyboard::T:
-					((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::maxForce, 0.01);
+					((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::maxForce, 0.001);
 					break;
 				case sf::Keyboard::G:
-					((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::maxForce, -0.01);
+					((AliCohSep*)Reynold)->changeParameter(AliCohSep::ReynoldParameters::maxForce, -0.001);
+					break;
+
+				case sf::Keyboard::Z:
+				{
+					for (int i = 0; i < 10; i++) {
+						auto f = new TriFlocker(20, sf::Vector2f(rand() % 900, rand() % 900), &window);
+						flockers.push_back(f);
+						f->initRandom();
+						f->setSteering(Reynold);
+					}
+					std::cout << "Num flockers = " << flockers.size() << std::endl;
+					break;
+				}
+				case sf::Keyboard::X:
+					for (int i = 0; i < 10; i++) {
+						flockers.pop_back();
+					}
+					std::cout << "Num flockers = " << flockers.size() << std::endl;
 					break;
 
 
